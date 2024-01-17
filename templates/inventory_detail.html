@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ inventory.name }} Details</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                {% if inventory.image %}
+
+                    <img src="{{ inventory.image.url }}" alt="{{ inventory.name }}" class="img-fluid">
+                {% else %}
+                    {#                    <img src="{% static 'images/img0.png' %}" alt="{{ inventory.name }}" class="img-fluid">#}
+                {% endif %}
+            </div>
+
+            <div class="col-md-6">
+                <p><strong>Barcode:</strong> {{ inventory.barcode }}</p>
+                <p><strong>Description:</strong> {{ inventory.description }}</p>
+                <p><strong>Price:</strong> ${{ inventory.price }}</p>
+                <p><strong>Quantity:</strong> {{ inventory.quantity }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
