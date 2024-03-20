@@ -1,7 +1,8 @@
 {% extends 'main.html' %}
 {% load static %}
 {% block content %}
-
+    <h3>Total: ${{total_price}}</h3>
+    <h3>Items: {{order.get_cart_items}}</h3>
 <div class="row">
     {% for product in products %}
     <div class="col-lg-4">
@@ -16,6 +17,12 @@
             <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
             <a class="btn btn-outline-success" href="{% url 'inventory_detail' product.id %}">View</a>
             <h4 style="display: inline-block;float: right;">$ {{ product.price|floatformat:2}}</h4>
+            {% for item in order_items %}
+            {% if item.product.id == product.id %}
+            <h5 style="color: darkred">{{ item.quantity }}</h5>
+            {% endif %}
+            {% endfor %}
+
         </div>
     </div>
     {% endfor %}

@@ -20,6 +20,7 @@ class Inventory(models.Model):
     quantity = models.PositiveIntegerField()
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name='products', null=True)
     image = models.ImageField(upload_to='products', null=True, blank=True)
+    on_sale = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
